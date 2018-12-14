@@ -1,12 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from "prop-types";
 import Counter from './Counter';
+import CrownIcon from "./CrownIcon";
+
 
 class Player extends PureComponent {
 
   static propTypes = {
     changeScore: PropTypes.func,
     removePlayer: PropTypes.func,
+    highestScorer: PropTypes.bool,
     name: PropTypes.string.isRequired,
     score: PropTypes.number.isRequired,
     id: PropTypes.number,
@@ -18,24 +21,34 @@ class Player extends PureComponent {
     const {
       name,
       removePlayer,
+      highestScorer,
       id,
       score,
       changeScore,
       index
-     } = this.props;
+    } = this.props;
+
+
 
     return (
       <div className="player">
-      <span className="player-name">
-      <button className="remove-player" onClick={() => removePlayer(id)}>✖</button>
-      { name }
-      </span>
 
-      <Counter
-        score = { score }
-        changeScore ={ changeScore }
-        index = { index }
-      />
+        <button className="remove-player" onClick={() => removePlayer(id)}>✖</button>
+
+        <span className="player-name">
+          <CrownIcon
+            yellow = { highestScorer ? true : false }
+          />
+
+          { name }
+
+        </span>
+
+        <Counter
+          score = { score }
+          changeScore ={ changeScore }
+          index = { index }
+        />
       </div>
     );
   }

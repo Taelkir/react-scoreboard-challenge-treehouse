@@ -7,22 +7,22 @@ class App extends Component {
   state = {
     players: [
       {
-        name: "Guil",
+        name: "Tom",
         score: 0,
         id: 1
       },
       {
-        name: "Treasure",
+        name: "James",
         score: 0,
         id: 2
       },
       {
-        name: "Ashley",
+        name: "Jacob",
         score: 0,
         id: 3
       },
       {
-        name: "James",
+        name: "Garrie",
         score: 0,
         id: 4
       }
@@ -61,8 +61,19 @@ class App extends Component {
     ));
   }
 
+  // Returns the highest score on the board
+  highestScore = () => {
+    const scores = this.state.players.map(p => p.score);
+    const highestScore = Math.max(...scores);
+    if (highestScore > 0) {
+      return highestScore;
+    } else {
+      return null;
+    }
+  }
 
   render() {
+
     return (
       <div className="scoreboard">
         <Header
@@ -76,6 +87,7 @@ class App extends Component {
             score = { player.score }
             id = { player.id }
             key = { player.id.toString() }
+            highestScorer = { this.highestScore() === player.score ? true : false }
             index = { index }
             removePlayer = { this.handleRemovePlayer }
             changeScore = { this.handleScoreChange }
