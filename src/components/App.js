@@ -25,6 +25,11 @@ class App extends Component {
         name: "Garrie",
         score: 0,
         id: 4
+      },
+      {
+        name: "Adam",
+        score: 0,
+        id: 5
       }
     ]
   };
